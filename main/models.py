@@ -9,8 +9,8 @@ from django.db import models
 class Course(models.Model):
     name=models.CharField(max_length=1000)
     description=models.TextField(default ='N/A',blank=True,null=True)
-    date_created=models.DateTimeField(auto_now_add=True)
-    date_modified=models.DateTimeField(auto_now=True)
+    date_created=models.DateTimeField(auto_now_add=True,default =None,blank=True,null=True)
+    date_modified=models.DateTimeField(auto_now=True,default =None,blank=True,null=True)
 
 
     def_str_(self):
