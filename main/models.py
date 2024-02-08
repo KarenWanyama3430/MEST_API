@@ -1,5 +1,4 @@
-from msilib.schema import SelfReg
-from typing import Self
+
 from django.db import models
 
 # Create your models here.
