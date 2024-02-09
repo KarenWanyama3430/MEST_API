@@ -49,3 +49,33 @@ class ClassAttendance(models.Model):
 
 def stri(self):
         return f"{self.class_schedule}"
+
+
+class Query(models.Model):
+     class Status(models.TextChoices):
+          PENDING='PENDING'
+          IN_PROGRESS='IN_PROGRESS'
+          DECLINED='DECLINED'
+          RESOLVED='RESOLVED'
+
+     title=models.CharField(default="",max_length=200)
+     description=models.TextField(default="",max_length=1000,blank=True,null=True)
+     submitted_by=models.ForeignKey(IMUser,on_delete=models.CASCADE,related_name='queries_submitted_by')
+     resolution_status=models.CharField(choices=Status.choices,max_length=1000,default=Status.PENDING)
+     date_created=models.DateTimeField(auto_now_add=True,blank=True,null=True)
+     date_modified=models.DateTimeField(auto_now=True,blank=True,null=True)
+     author=models.ForeignKey(IMUser,on_delete=models.CASCADE,related_name='queries_author')
+
+def stri(self):
+        return f"{self.title}"
+
+
+class QueryComment(models.models):
+     query=models.ForeignKey(Query,on_delete=models.CASCADE,related_name='comments_query')
+     comment=models.TextField(default='',max_length=1000,blank=True,null=True)
+     date_created=models.DateTimeField(auto_now_add=True,blank=True,null=True)
+     date_modified=models.DateTimeField(auto_now=True,blank=True,null=True)
+     author=models.ForeignKey(IMUser,on_delete=models.CASCADE,related_name='comment_author')
+
+     def stri(self):
+        return f"{self.query}"
