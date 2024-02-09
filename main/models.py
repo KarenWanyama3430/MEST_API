@@ -19,7 +19,7 @@ class Course(models.Model):
     
 
 class ClassSchedule(models.Model):
-    title=models.CharField(default='',length=1000)
+    title=models.CharField(default='',max_length=1000)
     description = models.TextField( default='',blank=True,null=True)
     start_date_and_time = models.DateTimeField(blank=True,null=True)
     end_date_and_time = models.DateTimeField(blank=True,null=True)
@@ -70,7 +70,7 @@ def stri(self):
         return f"{self.title}"
 
 
-class QueryComment(models.models):
+class QueryComment(models.Model):
      query=models.ForeignKey(Query,on_delete=models.CASCADE,related_name='comments_query')
      comment=models.TextField(default='',max_length=1000,blank=True,null=True)
      date_created=models.DateTimeField(auto_now_add=True,blank=True,null=True)
